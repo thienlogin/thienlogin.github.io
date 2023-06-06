@@ -1,0 +1,55 @@
+{
+  "success": true,
+  "data": {
+    "story": {
+        "id": "01",
+        "mp3Url": "https://thienlogin.github.io/mp3/binh.mp3",
+        "mp3Name": "Hoa Cỏ Lau",
+        "mp3Image":"https://canhrau.com/wp-content/uploads/2022/01/truyen-tranh-ngon-tinh-thanh-xuan-vuon-truong-trung-quoc-hinh-2.png",
+        "StoryDescription": "Giới Thiệu Truyện<br/><br/> - Là câu chuyện Sắc Hiệp - Đô Thị li kỳ và hấp dẫn với rất nhiều nhân vật và cốt truyện trải rộng, nhiều tình tiết đi kèm. Nhân vật chính là Trần Thiên Minh, 24 tuổi tốt nghiệp đại học hạng trung và đang làm giáo viên bình thường tại một trường Trung Học cơ sở ở một thị trấn nhỏ. Một ngày nọ vô tình trong lúc ... đi vệ sinh, hắn bị 1 con \"Kiến Thần\" - Huyết Hoàng Nghĩ trong truyền thuyết cắn ngay vào tờ-rym. có thể lấy 1 địch 10, bách chiến bách thắng!<br/><br/> - Thêm vào đó, có 1 lần vô tình giúp đỡ 1 ông lão, gặp vận may được ông lão võ công cao cường truyền cho 1 môn nội công bí truyền: Hương Ba Công. Cùng với dị năng có được từ Huyết Hoàng Nghĩ, Trần Thiên Minh bắt đầu chuyển hướng cuộc đời mình sang một ngã rẽ không thể tưởng tượng được...<br/><br/> - Tags: luu manh lao su prc full, luu manh lao su convert, truyen sac hiep<br/><br/>",
+         "StoryTitleLastChap": "Chương 2000",
+          "StoryView": 203,
+        "StoryTheLoai": [
+                {
+                    "TenTheLoai": "Đô Thị",
+                    "GioiThieu": "",
+                    "DisplayInMain": 0,
+                    "Id": "001"
+                },
+                {
+                    "TenTheLoai": "Sắc",
+                    "GioiThieu": "",
+                    "DisplayInMain": 0,
+                    "Id": "002"
+                },
+                {
+                    "TenTheLoai": "Dị Năng",
+                    "GioiThieu": "",
+                    "DisplayInMain": 0,
+                    "Id": "003"
+                }
+            ]
+      },
+      "numcomment": 0,
+      "truyenlienquan": [
+            {
+                "StoryImage": "https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/9a9a668c470938b2cb8114c958391178.jpg",
+                "StoryName": "Vợ Ngốc Ah! Em Trốn Được Tôi Sao?",
+                "StoryTitleLastChap": "Chương 119",
+                "StoryID": "6414cb8659e2220f106c5025",
+                "StoryUpdateTime": "3/20/2023 12:33:43 AM",
+                "StoryNameK": "vo-ngoc-ah-em-tron-duoc-toi-sao",
+                "StoryAuthor": "Mẫu Đơn Tiên Tử,"
+            },
+            {
+                "StoryImage": "https://i.pinimg.com/originals/30/57/5a/30575ad7dabd88715ce68271f0a9f030.jpg",
+                "StoryName": "Người Chồng Máu Lạnh",
+                "StoryTitleLastChap": "Chương 351",
+                "StoryID": "6414b30059e2220f106c3f3c",
+                "StoryUpdateTime": "4/11/2023 1:03:28 AM",
+                "StoryNameK": "nguoi-chong-mau-lanh",
+                "StoryAuthor": "Hạ Nhiễm Tuyết,"
+            }]
+    }
+  
+}

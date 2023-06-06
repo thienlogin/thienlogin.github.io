@@ -2,7 +2,16 @@
   "success": true,
   "data": {
     "mp3": [
-      "https://thienlogin.github.io/mp3/binh.mp3"
+      {
+        "id": "01",
+        "mp3Url": "https://thienlogin.github.io/mp3/binh.mp3",
+        "mp3Name": "Hoa Cỏ Lau"
+      },
+      {
+        "id": "02",
+        "mp3Url": "https://thienlogin.github.io/mp3/binh.mp3",
+        "mp3Name": "Bình Ngu"
+      }
     ]
   }
 }

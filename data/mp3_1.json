@@ -32,24 +32,27 @@
       },
       "numcomment": 0,
       "truyenlienquan": [
-            {
-                "StoryImage": "https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/9a9a668c470938b2cb8114c958391178.jpg",
-                "StoryName": "Vợ Ngốc Ah! Em Trốn Được Tôi Sao?",
-                "StoryTitleLastChap": "Chương 119",
-                "StoryID": "6414cb8659e2220f106c5025",
-                "StoryUpdateTime": "3/20/2023 12:33:43 AM",
-                "StoryNameK": "vo-ngoc-ah-em-tron-duoc-toi-sao",
-                "StoryAuthor": "Mẫu Đơn Tiên Tử,"
-            },
-            {
-                "StoryImage": "https://i.pinimg.com/originals/30/57/5a/30575ad7dabd88715ce68271f0a9f030.jpg",
-                "StoryName": "Người Chồng Máu Lạnh",
-                "StoryTitleLastChap": "Chương 351",
-                "StoryID": "6414b30059e2220f106c3f3c",
-                "StoryUpdateTime": "4/11/2023 1:03:28 AM",
-                "StoryNameK": "nguoi-chong-mau-lanh",
-                "StoryAuthor": "Hạ Nhiễm Tuyết,"
-            }]
+        {  
+"mp3Url": "https://thienlogin.github.io/mp3/binh.mp3",
+            "StoryImage": "https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/9a9a668c470938b2cb8114c958391178.jpg",
+            "StoryName": "Vợ Ngốc Ah! Em Trốn Được Tôi Sao?",
+            "StoryTitleLastChap": "Chương 119",
+            "StoryID": "6414cb8659e2220f106c5025",
+            "StoryUpdateTime": "3/20/2023 12:33:43 AM",
+            "StoryNameK": "vo-ngoc-ah-em-tron-duoc-toi-sao",
+            "StoryAuthor": "Mẫu Đơn Tiên Tử,"
+        },
+        {
+"mp3Url": "https://thienlogin.github.io/mp3/binh.mp3",
+            "StoryImage": "https://i.pinimg.com/originals/30/57/5a/30575ad7dabd88715ce68271f0a9f030.jpg",
+            "StoryName": "Người Chồng Máu Lạnh",
+            "StoryTitleLastChap": "Chương 351",
+            "StoryID": "6414b30059e2220f106c3f3c",
+            "StoryUpdateTime": "4/11/2023 1:03:28 AM",
+            "StoryNameK": "nguoi-chong-mau-lanh",
+            "StoryAuthor": "Hạ Nhiễm Tuyết,"
+        }
+    ]
     }
   
 }

@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Thiện Chum</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
   <link rel='stylesheet' href='https://unpkg.com/augmented-ui@2.0.0/augmented-ui.min.css'>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.35.0/codemirror.css'>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.1/addon/scroll/simplescrollbars.min.css'><link rel="stylesheet" href="./style.css">
@@ -11,38 +14,51 @@
 <body>
 <!-- partial:index.partial.html -->
 <code class="code-container">
-  <input class="sig" value="// Thiện Login 💜">
-  <div class="glow-container">
+  <a href="#" class="custom-button">Bỏ qua</a>
+  <a href="https://www.messenger.com/t/100004760082766" class="custom-button-right">Trả lời</a>
+  <!-- <input class="sig" value="trả lời"> -->
+  <!-- <div class="glow-container">
     <div class="augs" data-augmented-ui></div>
-  </div>
+  </div> -->
   <section class="augs bg" data-augmented-ui>
     <button class="dots" onclick="changeMode(this)" title="(click to change) Current Mode: css"></button>
-    <input class="title" value="thienlogin.github.io">
+    <input class="title" value="From Thien with love 💚">
     <div class="code highcontrast-dark">
       <textarea id="code">
 @keyframes cast-bit-to-space-toggle {
   to { --cbtst-space-toggle: ; }
 }
+/* 
 
-@property --cbtst-space-toggle {
-  syntax: "*";
-  initial-value: initial;
-  inherits: false;
-}
+Chào Nguyệt,
+
+Anh hiểu rằng giữ im lặng là một điều thông thường 
+và mỗi người có lý do riêng để làm như vậy. 
+Anh không muốn xâm phạm vào chuyện riêng tư của em,
+nhưng anh chỉ muốn biết rằng em có ổn không? 
+Anh không muốn gặp hiểu lầm hay gây khó chịu cho em.
+Anh chỉ muốn đảm bảo rằng mọi thứ tốt đẹp với em. 
+Nếu em muốn nói chuyện hoặc chia sẻ điều gì, 
+anh sẵn lòng lắng nghe. 
+Hy vọng mọi thứ sẽ tốt hơn 
+và mong sớm nhận được tin từ em.
+
+
+
+~~
+Anh
+
+
+*/
 
 :where(.cbtst) {
   --cbtst-animation: cast-bit-to-space-toggle
     1ms linear both var(--cbtst-bit, 0);
   animation: var(--cbtst-animation);
 }
-
-/* usage */
-.my-el.cbtst {
-  --cbtst-bit: 1; /* provide input value of 0 or 1 */
-  /* var(--cbtst-space-toggle) is the output */
-}
       </textarea>
     </div>
+    
   </section>
 </div>
 <!-- partial -->

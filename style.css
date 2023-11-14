@@ -2,12 +2,12 @@
   resize: both;
   overflow: hidden;
   margin: auto;
-  width: 80vw;
+  width: 100vw;
   height: 80vh;
-  min-width: 420px;
+  min-width: 480px;
   min-height: 255px;
   position: relative;
-  --glow-margin: 70px;
+  --glow-margin: 20px;
   filter: drop-shadow(0 0 75px rgb(128 0 255 / 0.25));
 }
 
@@ -26,6 +26,43 @@ input.sig {
   text-align: right;
   letter-spacing: 0.1em;
 }
+
+
+
+
+
+
+
+
+.custom-button {
+  position: absolute;
+  bottom: 50px;
+  left: 90px;
+  z-index: 999;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: rebeccapurple; /* Màu tím */
+  color: #b7f1f7; /* Màu chữ trắng */
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  text-align: left;
+}
+.custom-button-right {
+  position: absolute;
+  bottom: 50px;
+  right: 90px;
+  z-index: 999;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: rebeccapurple; 
+  color: #b7f1f7; 
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  text-align: right;
+}
+
 
 .code-container::after {
   content: "";
@@ -127,7 +164,7 @@ section.augs::before {
 
 input.title {
   position: absolute;
-  top: 17px;
+  top: 14px;
   left: 120px;
   width: calc(100% - 240px);
   background: transparent;
@@ -136,17 +173,19 @@ input.title {
   border: none;
   text-align: center;
   letter-spacing: 0.1em;
+  transform: skewX(-15deg); 
+  
 }
 
 .code {
   position: absolute;
   inset: 80px 10px 10px 10px;
-  font-size: 20px;
+  font-size: 14px;
   color: white;
   filter: brightness(1.2);
 }
 .code * {
-  font-size: 18px;
+  font-size: 12px;
   font-weight: normal;
   color: #b5b4b6;
   font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;

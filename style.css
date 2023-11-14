@@ -2,7 +2,7 @@
   resize: both;
   overflow: hidden;
   margin: auto;
-  width: 100vw;
+  width: 90vw;
   height: 80vh;
   min-width: 480px;
   min-height: 255px;
@@ -40,13 +40,14 @@ input.sig {
   left: 90px;
   z-index: 999;
   display: inline-block;
-  padding: 10px 20px;
-  background-color: rebeccapurple; /* Màu tím */
+  padding: 10px 30px;
+  background-color: rgb(140, 130, 150); /* Màu tím */
   color: #b7f1f7; /* Màu chữ trắng */
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 15px;
   transition: background-color 0.3s;
   text-align: left;
+  font-size: 25px;
 }
 .custom-button-right {
   position: absolute;
@@ -54,13 +55,14 @@ input.sig {
   right: 90px;
   z-index: 999;
   display: inline-block;
-  padding: 10px 20px;
+  padding: 20px 40px;
   background-color: rebeccapurple; 
   color: #b7f1f7; 
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 15px;
   transition: background-color 0.3s;
   text-align: right;
+  font-size: 35px;
 }
 
 
@@ -173,19 +175,20 @@ input.title {
   border: none;
   text-align: center;
   letter-spacing: 0.1em;
-  transform: skewX(-15deg); 
+  transform: skewX(-15deg);
+  font-size: 25px; 
   
 }
 
 .code {
   position: absolute;
   inset: 80px 10px 10px 10px;
-  font-size: 14px;
+  font-size: 22px;
   color: white;
   filter: brightness(1.2);
 }
 .code * {
-  font-size: 12px;
+  font-size: 22px;
   font-weight: normal;
   color: #b5b4b6;
   font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;

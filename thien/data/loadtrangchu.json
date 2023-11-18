@@ -1,0 +1,57 @@
+{
+    "success": true,
+    "data": {
+        "theloai": [
+            {
+                "TenTheLoai": "Kiếm hiệp",
+                "MoTa": "",
+                "ID": "6414376859e2220f106befd6",
+                "Truyen": [
+                    {
+                        "mp3Image": "https://nghetruyenma.net/wp-content/uploads/2023/02/tu-chan-kiep.jpg",
+                        "mp3Name": "Tu Chân Kiếp",
+                        "StoryTitleLastChap": "Chương 77: Phiên ngoại 8",
+                        "id": "01",
+                        "StoryUpdateTime": "5/15/2023 2:56:31 AM",
+                        "StoryNameK": "xa-yeu",
+                        "StoryAuthor": "Lão Lâm,"
+                    },
+                    {
+                        "mp3Image": "https://nghetruyenma.net/wp-content/uploads/2023/05/yeu-ton.jpg",
+                        "mp3Name": "Yêu Tôn",
+                        "StoryTitleLastChap": "Chương 77",
+                        "id": "02",
+                        "StoryUpdateTime": "5/15/2023 2:55:24 AM",
+                        "StoryNameK": "yeu-ton",
+                        "StoryAuthor": "Nhĩ Căn"
+                    }
+                ]
+            },
+            {
+                "TenTheLoai": "Quân sự",
+                "MoTa": "",
+                "ID": "6414378159e2220f106beff2",
+                "Truyen": [
+                    {
+                        "mp3Image": "https://nghetruyenma.net/wp-content/uploads/2022/06/bac-tong-nhan-vuong.jpg",
+                        "mp3Name": "Bắc Tống Nhàn Vương",
+                        "StoryTitleLastChap": "Chương 74",
+                        "id": "03",
+                        "StoryUpdateTime": "5/15/2023 2:56:31 AM",
+                        "StoryNameK": "xa-yeu",
+                        "StoryAuthor": "Bắc Minh Lão Ngũ"
+                    },
+                    {
+                        "mp3Image": "https://nghetruyenma.net/wp-content/uploads/2023/03/quang-am-chi-ngoai.jpg",
+                        "mp3Name": "Quang Âm Chi Ngoại",
+                        "StoryTitleLastChap": "Chương 193",
+                        "id": "04",
+                        "StoryUpdateTime": "5/15/2023 2:55:24 AM",
+                        "StoryNameK": "yeu-ton",
+                        "StoryAuthor": "Nhĩ Căn"
+                    }
+                ]
+            }
+        ]
+    }
+}

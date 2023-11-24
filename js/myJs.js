@@ -34,7 +34,7 @@ $(document).ready(function () {
     Swal.fire({
       title: textConfig.text1,
       text: textConfig.text2,
-      imageUrl: "img/cuti.png",
+      imageUrl: "img/cuteCat.jpg",
       imageWidth: 300,
       imageHeight: 400,
       background: '#fff url("img/iput-bg.jpg")',
@@ -137,7 +137,7 @@ $(document).ready(function () {
           text: textConfig.text11,
           confirmButtonColor: "#83d0c9",
           onClose: () => {
-            window.location = "https://fb.com/profile.php?id=100012134146280";
+            window.location = "https://www.messenger.com/t/100004760082766";
           },
         });
       }

@@ -1,12 +1,7 @@
 {
-  "totalChapters": 14,
+  "totalChapters": 15,
   "chapters": [
     "1.json",
-    "10.json",
-    "11.json",
-    "12.json",
-    "13.json",
-    "14.json",
     "2.json",
     "3.json",
     "4.json",
@@ -14,6 +9,12 @@
     "6.json",
     "7.json",
     "8.json",
-    "9.json"
+    "9.json",
+    "10.json",
+    "11.json",
+    "12.json",
+    "13.json",
+    "14.json",
+    "listchapter.json"
   ]
 }

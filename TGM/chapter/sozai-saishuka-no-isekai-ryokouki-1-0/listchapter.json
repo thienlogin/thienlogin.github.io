@@ -1,7 +1,15 @@
 {
-  "totalChapters": 51,
+  "totalChapters": 52,
   "chapters": [
     "1.json",
+    "2.json",
+    "3.json",
+    "4.json",
+    "5.json",
+    "6.json",
+    "7.json",
+    "8.json",
+    "9.json",
     "10.json",
     "11.json",
     "12.json",
@@ -12,7 +20,6 @@
     "17.json",
     "18.json",
     "19.json",
-    "2.json",
     "20.json",
     "21.json",
     "22.json",
@@ -24,7 +31,6 @@
     "27.json",
     "28.json",
     "29.json",
-    "3.json",
     "30.json",
     "31.json",
     "32.5.json",
@@ -39,7 +45,6 @@
     "38.5.json",
     "38.json",
     "39.json",
-    "4.json",
     "40.5.json",
     "40.json",
     "41.json",
@@ -47,10 +52,6 @@
     "42.json",
     "43.5.json",
     "44.json",
-    "5.json",
-    "6.json",
-    "7.json",
-    "8.json",
-    "9.json"
+    "listchapter.json"
   ]
 }

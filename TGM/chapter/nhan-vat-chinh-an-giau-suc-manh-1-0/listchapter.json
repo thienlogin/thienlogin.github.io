@@ -1,5 +1,5 @@
 {
-  "totalChapters": 8,
+  "totalChapters": 9,
   "chapters": [
     "0.json",
     "1.json",
@@ -8,6 +8,7 @@
     "4.json",
     "5.json",
     "6.json",
-    "7.json"
+    "7.json",
+    "listchapter.json"
   ]
 }

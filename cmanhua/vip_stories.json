@@ -1,28 +1,40 @@
 {
   "vipStories": [
     {
-      "imageUrl": "https://cimg02.vnmanga.top/bbdata/back-to-rule-again//thumb.jpg",
-      "title": "Back to rule again",
-      "star": 4.5,
-      "id": "66ff6a120631ac1aecb82f63"
+      "imageUrl": "https://cimg02.vnmanga.top/bbdata/rebirth-of-the-godly-prodigal/thumb.jpg",
+      "title": "Rebirth of the godly prodigal",
+      "star": 4.8,
+      "id": "66ff718a0631ac1aecb8d2ad"
     },
     {
-      "imageUrl": "https://cimg02.vnmanga.top/bbdata/apocalyptic-thief//thumb.jpg",
-      "title": "Apocalyptic thief",
-      "star": 4.5,
-      "id": "66ff7f5c0631ac1aecbada17"
+      "imageUrl": "https://cimg02.vnmanga.top/bbdata/god-of-martial-arts/thumb.jpg",
+      "title": "God of martial arts",
+      "star": 4.7,
+      "id": "66ff63c00631ac1aecb79381"
     },
     {
-      "imageUrl": "https://cimg02.vnmanga.top/bbdata/evolution-frenzy//thumb.jpg",
-      "title": "Evolution frenzy",
+      "imageUrl": "https://cimg02.vnmanga.top/bbdata/my-little-brother-is-the-academys-hotshot/thumb.jpg",
+      "title": "My little brother is the academy is hotshot",
+      "star": 4.6,
+      "id": "66ff5e000631ac1aecb6dc21"
+    },
+    {
+      "imageUrl": "https://cimg02.vnmanga.top/bbdata/i-can-snatch-999-types-of-abilities//thumb.jpg",
+      "title": "I can snatch 999 types of abilities",
+      "star": 4.5,
+      "id": "66fe75970631ac365c7b45f6"
+    },
+    {
+      "imageUrl": "https://cimg02.vnmanga.top/bbdata/my-disciples-are-super-gods//thumb.jpg",
+      "title": "My disciples are super gods",
       "star": 4.4,
-      "id": "66ff64200631ac1aecb7a255"
+      "id": "66fe6f220631ac365c7b0c63"
     },
     {
-      "imageUrl": "https://cimg02.vnmanga.top/bbdata/endless-devourer//thumb.jpg",
-      "title": "Endless devourer",
-      "star": 4.2,
-      "id": "66ff62880631ac1aecb76bf0"
+      "imageUrl": "https://cimg02.vnmanga.top/bbdata/astral-pet-store//thumb.jpg",
+      "title": "Astral pet store",
+      "star": 4.3,
+      "id": "66fe66af0631ac365c7ac78b"
     }
   ]
 }

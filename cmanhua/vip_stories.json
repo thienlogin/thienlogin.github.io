@@ -1,0 +1,28 @@
+{
+  "vipStories": [
+    {
+      "imageUrl": "https://cimg02.vnmanga.top/bbdata/back-to-rule-again//thumb.jpg",
+      "title": "Back to rule again",
+      "star": 4.5,
+      "id": "66ff6a120631ac1aecb82f63"
+    },
+    {
+      "imageUrl": "https://cimg02.vnmanga.top/bbdata/apocalyptic-thief//thumb.jpg",
+      "title": "Apocalyptic thief",
+      "star": 4.5,
+      "id": "66ff7f5c0631ac1aecbada17"
+    },
+    {
+      "imageUrl": "https://cimg02.vnmanga.top/bbdata/evolution-frenzy//thumb.jpg",
+      "title": "Evolution frenzy",
+      "star": 4.4,
+      "id": "66ff64200631ac1aecb7a255"
+    },
+    {
+      "imageUrl": "https://cimg02.vnmanga.top/bbdata/endless-devourer//thumb.jpg",
+      "title": "Endless devourer",
+      "star": 4.2,
+      "id": "66ff62880631ac1aecb76bf0"
+    }
+  ]
+}

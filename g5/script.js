@@ -1,15 +1,16 @@
 const greetings = {
-    1: ["Chúc", "Mừng", "8/3", "Vui", "Vẻ"],
-    2: ["Phụ", "Nữ", "Tự", "Tin", "Vui"],
-    3: ["8/3", "Rực", "Rỡ", "Hạnh", "Phúc"],
-    4: ["Chị", "Em", "Tuyệt", "Vời", "Nhất"],
-    5: ["Ngày", "8/3", "Hạnh", "Phúc", "Vui"],
-    6: ["Mừng", "8/3", "Chị", "Em", "Xinh"],
-    7: ["Phụ", "Nữ", "Công", "Sở", "Giỏi"],
-    8: ["8/3", "Niềm", "Vui", "Trọn", "Vẹn"],
-    9: ["Chúc", "Chị", "Em", "Luôn", "Rạng"],
-    10: ["Ngày", "8/3", "Yêu", "Thương", "Nhiều"]
+  1: [ 'Thông', 'Minh', 'Cù', 'Cần', 'Bù' ],
+  2: [ 'Cả', 'Mất', 'Lẫn', 'Chài', 'Chì' ],
+  3: [ 'Chân', 'Miệng', 'Đỡ', 'Tay', 'Mồm' ],
+  4: [ 'Con', 'Đói', 'No', 'Mắt', 'Bụng' ],
+  5: [ 'Nước', 'Chậm', 'Đục', 'Trâu', 'Uống' ],
+  6: [ 'Chạy', 'Nắng', 'Trời', 'Khỏi', 'Không' ],
+  7: [ 'Cổ', 'Ra', 'Vắt', 'Nước', 'Chày' ],
+  8: [ 'Vẽ', 'Cho', 'Hươu', 'Chạy', 'Đường' ],
+  9: [ 'Cắn', 'Gà', 'Rắn', 'Nhà', 'Cõng' ],
+  10: [ 'Thêm', 'Lửa', 'Đổ', 'Vào', 'Dầu' ]
 };
+
 
 let currentTeam = null;
 

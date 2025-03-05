@@ -35,10 +35,10 @@ const firebaseConfig = {
       db.ref("round").on("value", (roundSnapshot) => {
           const round = roundSnapshot.val();
           if (round === 0) {
-              document.getElementById("word").innerText = "Đợi admin khởi động...";
+              document.getElementById("word").innerText = "Chuẩn bị...";
           } else {
               db.ref(`teams/${currentTeam}/${currentNumber}`).once("value", (wordSnapshot) => {
-                  const word = wordSnapshot.val() || "Đợi admin khởi động...";
+                  const word = wordSnapshot.val() || "Chuẩn bị...";
                   document.getElementById("word").innerText = word;
               });
           }

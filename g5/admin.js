@@ -26,18 +26,30 @@ const greetings1 = {
     10: ["Thêm", "Lửa", "Đổ", "Vào", "Dầu"]
 };
 
-// Danh sách từ cho Round 2 (đảo lộn cố định)
+// // Danh sách từ cho Round 2 (đảo lộn cố định)
+// const greetings2 = {
+//     1: ["Vung", "Nồi", "Úp", "Nào", "Nấy"],        // Nồi Nào Úp Vung Nấy
+//     2: ["Thua", "Vua", "Lệ", "Phép", "Làng"],     // Phép Vua Thua Lệ Làng
+//     3: ["Nan", "Sự", "Đầu", "Vạn", "Khởi"],       // Vạn Sự Khởi Đầu Nan
+//     4: ["Nhảy", "Chân", "Mới", "Nước", "Đến"],    // Nước Đến Chân Mới Nhảy
+//     5: ["Rán", "Mù", "Cá", "Mèo", "Vớ"],         // Mèo Mù Vớ Cá Rán
+//     6: ["Tổ", "Lâu", "Đầy", "Kiến", "Tha"],       // Kiến Tha Lâu Đầy Tổ
+//     7: ["Ông", "Đập", "Gậy", "Lưng", "Ông"],      // Gậy Ông Đập Lưng Ông
+//     8: ["Tử", "Phụ", "Hổ", "Sinh", "Hổ"],         // Hổ Phụ Sinh Hổ Tử
+//     9: ["Ăn", "Ghét", "Trâu", "Buộc", "Trâu"],    // Trâu Buộc Ghét Trâu Ăn
+//     10: ["Lợi", "Công", "Hưởng", "Vô", "Bất"]     // Vô Công Bất Hưởng Lợi
+// };
 const greetings2 = {
-    1: ["Vung", "Nồi", "Úp", "Nào", "Nấy"],        // Nồi Nào Úp Vung Nấy
-    2: ["Thua", "Vua", "Lệ", "Phép", "Làng"],     // Phép Vua Thua Lệ Làng
-    3: ["Nan", "Sự", "Đầu", "Vạn", "Khởi"],       // Vạn Sự Khởi Đầu Nan
-    4: ["Nhảy", "Chân", "Mới", "Nước", "Đến"],    // Nước Đến Chân Mới Nhảy
-    5: ["Rán", "Mù", "Cá", "Mèo", "Vớ"],         // Mèo Mù Vớ Cá Rán
-    6: ["Tổ", "Lâu", "Đầy", "Kiến", "Tha"],       // Kiến Tha Lâu Đầy Tổ
-    7: ["Ông", "Đập", "Gậy", "Lưng", "Ông"],      // Gậy Ông Đập Lưng Ông
-    8: ["Tử", "Phụ", "Hổ", "Sinh", "Hổ"],         // Hổ Phụ Sinh Hổ Tử
-    9: ["Ăn", "Ghét", "Trâu", "Buộc", "Trâu"],    // Trâu Buộc Ghét Trâu Ăn
-    10: ["Lợi", "Công", "Hưởng", "Vô", "Bất"]     // Vô Công Bất Hưởng Lợi
+    1: ["Nắng", "Ngủ", "Mèo", "Trưa", "Lười"],      // Mèo lười ngủ trưa nắng
+    2: ["Nhẹ", "Lá", "Thổi", "Rơi", "Gió"],        // Gió thổi lá rơi nhẹ
+    3: ["Sông", "Soi", "Trăng", "Dòng", "Sáng"],   // Trăng sáng soi dòng sông
+    4: ["Nước", "Bơi", "Dưới", "Nhanh", "Cá"],     // Cá bơi nhanh dưới nước
+    5: ["Sáng", "Vang", "Hót", "Chim", "Buổi"],    // Chim hót vang buổi sáng
+    6: ["Mát", "Tỏa", "Xanh", "Cây", "Bóng"],      // Cây xanh tỏa bóng mát
+    7: ["Đều", "Tí", "Mưa", "Rơi", "Tách"],        // Mưa rơi tí tách đều
+    8: ["Xanh", "Cao", "Mọc", "Đồi", "Cỏ"],        // Đồi cao cỏ mọc xanh
+    9: ["Xa", "Vỗ", "Biển", "Sóng", "Bờ"],         // Biển sóng vỗ bờ xa
+    10: ["Lấp", "Đen", "Sao", "Lánh", "Đêm"]       // Đêm đen sao lấp lánh
 };
 
 let round = 0;

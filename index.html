@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Học tiếng Trung</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h5>Học tiếng Trung 📒</h5>
+        <select id="lessonSelect">
+            <option value="">Chọn bài học</option>
+        </select>
+        <textarea id="inputWords" placeholder="Danh sách từ sẽ hiển thị ở đây"></textarea>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+        <p id="currentWord"></p>
+        <div class="controls">
+            <label>Tốc độ đọc (0.5 - 2): <input type="range" id="speechRate" min="0.5" max="2" step="0.1" value="1"><span id="speechRateValue">1</span></label>
+            <label>Khoảng cách (giây): <input type="range" id="delay" min="0" max="5" step="0.5" value="1"><span id="delayValue">1</span></label>
+            <label>Nghe tiếng Việt: <input type="checkbox" id="playVietnamese" checked></label>
+            <div class="button-group">
+                <button id="playBtn" onclick="processAndSpeakList()">Phát âm</button>
+                <button id="stopBtn" onclick="stopSpeaking()">Dừng</button>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="lessons.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

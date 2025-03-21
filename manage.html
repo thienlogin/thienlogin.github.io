@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quản lý bài học</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="manage.css">
+    <!-- Dùng Firebase SDK phiên bản 8.10.1 -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+</head>
+<body>
+    <div id="auth-section">
+        <h2>Đăng nhập</h2>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" value="thiendetien@gmail.com" placeholder="admin@example.com">
+        </div>
+        <div class="form-group">
+            <label for="password">Mật khẩu:</label>
+            <input type="password" id="password" placeholder="Mật khẩu">
+        </div>
+        <button id="btnlogin" onclick="login()">Đăng nhập</button>
+        <button onclick="logout()" id="logoutBtn" style="display: none;">Đăng xuất</button>
+    </div>
+
+    <div id="manage-section" style="display: none;">
+        <a href="index.html"> ← Trang Chủ</a>
+        <h2>Quản lý bài học</h2>
+        
+        <div class="form-group">
+            <label for="lessonKey">Mã bài học (ví dụ: lesson3):</label>
+            <input type="text" id="lessonKey" placeholder="lesson3">
+        </div>
+        <div class="form-group">
+            <label for="lessonTitle">Tên bài học:</label>
+            <input type="text" id="lessonTitle" placeholder="Bài 3: 10 từ mới">
+        </div>
+        <div class="form-group">
+            <label for="lessonWords">Danh sách từ (mỗi dòng một từ, định dạng: pinyin - chữ Hán - nghĩa):</label>
+            <textarea id="lessonWords" rows="10" placeholder="nǐ shì - 你是 - bạn là"></textarea>
+        </div>
+        <button class="add-btn" id="addBtn" onclick="addLesson()">Thêm bài học</button>
+        <button class="edit-btn" id="updateBtn" onclick="updateLesson()" style="display: none;">Sửa bài học</button>
+        <button class="cancel-btn" id="cancelBtn" onclick="cancelEdit()" style="display: none;">Hủy</button>
+
+        <h3>Danh sách bài học</h3>
+        <div id="lessonList"></div>
+    </div>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyD3XzQuT0mm0VuiIlRjh4J_8NspqRnup3c",
+            authDomain: "hoc-tieng-trung-8fcb7.firebaseapp.com",
+            databaseURL: "https://hoc-tieng-trung-8fcb7-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "hoc-tieng-trung-8fcb7",
+            storageBucket: "hoc-tieng-trung-8fcb7.firebasestorage.app",
+            messagingSenderId: "241542260275",
+            appId: "1:241542260275:web:14ac29e9b1c368fabb6546",
+            measurementId: "G-9XD0EK9N9V"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const database = firebase.database();
+
+        let isEditing = false; // Trạng thái: đang thêm hay sửa
+
+        // Kiểm tra trạng thái đăng nhập
+        auth.onAuthStateChanged((user) => {
+            const authSection = document.getElementById('auth-section');
+            const manageSection = document.getElementById('manage-section');
+            const logoutBtn = document.getElementById('logoutBtn');
+
+            if (user) {
+                authSection.style.display = 'none';
+                manageSection.style.display = 'block';
+                logoutBtn.style.display = 'inline-block';
+                loadLessons();
+            } else {
+                authSection.style.display = 'block';
+                manageSection.style.display = 'none';
+                logoutBtn.style.display = 'none';
+            }
+        });
+
+        // Đăng nhập
+        function login() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            auth.signInWithEmailAndPassword(email, password)
+                .then(() => {
+                    alert("Đăng nhập thành công!");
+                })
+                .catch(error => {
+                    console.error("Lỗi khi đăng nhập:", error);
+                    alert("Đăng nhập thất bại: " + error.message);
+                });
+        }
+
+        // Đăng xuất
+        function logout() {
+            auth.signOut()
+                .then(() => {
+                    alert("Đăng xuất thành công!");
+                })
+                .catch(error => {
+                    console.error("Lỗi khi đăng xuất:", error);
+                    alert("Đăng xuất thất bại: " + error.message);
+                });
+        }
+
+        // Load danh sách bài học
+        function loadLessons() {
+            database.ref('lessons').on('value', (snapshot) => {
+                const lessons = snapshot.val();
+                const lessonList = document.getElementById('lessonList');
+                lessonList.innerHTML = '';
+
+                if (!lessons) {
+                    lessonList.innerHTML = '<p>Chưa có bài học nào.</p>';
+                    return;
+                }
+
+                for (const lessonKey in lessons) {
+                    const lesson = lessons[lessonKey];
+                    const lessonItem = document.createElement('div');
+                    lessonItem.className = 'lesson-item';
+                    lessonItem.innerHTML = `
+                        <div>
+                            <h4>${lesson.title}</h4>
+                            <p>${lesson.words.length} từ: ${lesson.words.slice(0, 2).join(', ')}${lesson.words.length > 2 ? '...' : ''}</p>
+                        </div>
+                        <div class="actions">
+                            <button class="edit-btn" onclick="editLesson('${lessonKey}')">Sửa</button>
+                            <button class="delete-btn" onclick="deleteLesson('${lessonKey}')">Xóa</button>
+                        </div>
+                    `;
+                    lessonList.appendChild(lessonItem);
+                }
+            });
+        }
+
+        // Thêm bài học
+        function addLesson() {
+            const lessonKey = document.getElementById("lessonKey").value;
+            const lessonTitle = document.getElementById("lessonTitle").value;
+            const lessonWords = document.getElementById("lessonWords").value.split("\n").filter(word => word.trim() !== "");
+
+            if (!lessonKey || !lessonTitle || lessonWords.length === 0) {
+                alert("Vui lòng điền đầy đủ thông tin!");
+                return;
+            }
+
+            // Kiểm tra xem lessonKey đã tồn tại chưa
+            database.ref('lessons/' + lessonKey).once('value', (snapshot) => {
+                if (snapshot.exists()) {
+                    alert("Mã bài học đã tồn tại! Vui lòng chọn mã khác hoặc chỉnh sửa bài học hiện có.");
+                    return;
+                }
+
+                const lessonData = {
+                    title: lessonTitle,
+                    words: lessonWords
+                };
+
+                database.ref('lessons/' + lessonKey).set(lessonData)
+                    .then(() => {
+                        alert("Thêm bài học thành công!");
+                        clearForm();
+                    })
+                    .catch(error => {
+                        console.error("Lỗi khi thêm bài học:", error);
+                        if (error.code === 'PERMISSION_DENIED') {
+                            alert("Bạn không có quyền thêm bài học. Vui lòng đăng nhập với tài khoản admin.");
+                        } else {
+                            alert("Có lỗi xảy ra: " + error.message);
+                        }
+                    });
+            });
+        }
+
+        // Sửa bài học
+        function updateLesson() {
+            const lessonKey = document.getElementById("lessonKey").value;
+            const lessonTitle = document.getElementById("lessonTitle").value;
+            const lessonWords = document.getElementById("lessonWords").value.split("\n").filter(word => word.trim() !== "");
+
+            if (!lessonKey || !lessonTitle || lessonWords.length === 0) {
+                alert("Vui lòng điền đầy đủ thông tin!");
+                return;
+            }
+
+            const lessonData = {
+                title: lessonTitle,
+                words: lessonWords
+            };
+
+            database.ref('lessons/' + lessonKey).set(lessonData)
+                .then(() => {
+                    alert("Sửa bài học thành công!");
+                    cancelEdit();
+                })
+                .catch(error => {
+                    console.error("Lỗi khi sửa bài học:", error);
+                    if (error.code === 'PERMISSION_DENIED') {
+                        alert("Bạn không có quyền sửa bài học. Vui lòng đăng nhập với tài khoản admin.");
+                    } else {
+                        alert("Có lỗi xảy ra: " + error.message);
+                    }
+                });
+        }
+
+        // Chuyển sang chế độ sửa
+        function editLesson(lessonKey) {
+            database.ref('lessons/' + lessonKey).once('value', (snapshot) => {
+                const lesson = snapshot.val();
+                if (lesson) {
+                    isEditing = true;
+                    document.getElementById("lessonKey").value = lessonKey;
+                    document.getElementById("lessonKey").disabled = true; // Không cho sửa lessonKey
+                    document.getElementById("lessonTitle").value = lesson.title;
+                    document.getElementById("lessonWords").value = lesson.words.join("\n");
+                    document.getElementById("addBtn").style.display = 'none';
+                    document.getElementById("updateBtn").style.display = 'inline-block';
+                    document.getElementById("cancelBtn").style.display = 'inline-block';
+                }
+            });
+        }
+
+        // Hủy chế độ sửa
+        function cancelEdit() {
+            isEditing = false;
+            document.getElementById("lessonKey").disabled = false;
+            clearForm();
+            document.getElementById("addBtn").style.display = 'inline-block';
+            document.getElementById("updateBtn").style.display = 'none';
+            document.getElementById("cancelBtn").style.display = 'none';
+        }
+
+        // Xóa bài học
+        function deleteLesson(lessonKey) {
+            if (confirm("Bạn có chắc chắn muốn xóa bài học này?")) {
+                database.ref('lessons/' + lessonKey).remove()
+                    .then(() => {
+                        alert("Xóa bài học thành công!");
+                    })
+                    .catch(error => {
+                        console.error("Lỗi khi xóa bài học:", error);
+                        if (error.code === 'PERMISSION_DENIED') {
+                            alert("Bạn không có quyền xóa bài học. Vui lòng đăng nhập với tài khoản admin.");
+                        } else {
+                            alert("Có lỗi xảy ra: " + error.message);
+                        }
+                    });
+            }
+        }
+
+        // Xóa form
+        function clearForm() {
+            document.getElementById("lessonKey").value = "";
+            document.getElementById("lessonTitle").value = "";
+            document.getElementById("lessonWords").value = "";
+        }
+    </script>
+</body>
+</html>

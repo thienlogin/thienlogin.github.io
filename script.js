@@ -1,16 +1,43 @@
+
 let voices = [];
 let isSpeaking = false;
+let lessons = {};
 
-// Tạo options cho <select> khi trang load
-document.addEventListener("DOMContentLoaded", function() {
-    const lessonSelect = document.getElementById("lessonSelect");
-    for (const lessonKey in lessons) {
-        const option = document.createElement("option");
-        option.value = lessonKey;
-        option.textContent = lessons[lessonKey].title;
-        lessonSelect.appendChild(option);
+// Cấu hình Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyD3XzQuT0mm0VuiIlRjh4J_8NspqRnup3c",
+    authDomain: "hoc-tieng-trung-8fcb7.firebaseapp.com",
+    databaseURL: "https://hoc-tieng-trung-8fcb7-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "hoc-tieng-trung-8fcb7",
+    storageBucket: "hoc-tieng-trung-8fcb7.firebasestorage.app",
+    messagingSenderId: "241542260275",
+    appId: "1:241542260275:web:14ac29e9b1c368fabb6546",
+    measurementId: "G-9XD0EK9N9V"
+};
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
+// Load bài học từ Firebase
+async function loadLessons() {
+    try {
+        const snapshot = await database.ref('lessons').once('value');
+        lessons = snapshot.val();
+
+        const lessonSelect = document.getElementById("lessonSelect");
+        for (const lessonKey in lessons) {
+            const option = document.createElement("option");
+            option.value = lessonKey;
+            option.textContent = lessons[lessonKey].title;
+            lessonSelect.appendChild(option);
+        }
+    } catch (error) {
+        console.error("Lỗi khi load lessons từ Firebase:", error);
+        alert("Không thể tải danh sách bài học.");
     }
-});
+}
+
+// Gọi hàm loadLessons khi trang load
+document.addEventListener("DOMContentLoaded", loadLessons);
 
 function loadVoices() {
     voices = speechSynthesis.getVoices();

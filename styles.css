@@ -12,7 +12,7 @@ body {
 .container {
     width: 95%;
     max-width: 500px;
-    background: white;
+    background: rgba(255, 255, 255, 0.519);
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -26,17 +26,17 @@ body {
     height: 8px;
     background: #e0e0e0;
     border-radius: 4px;
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
 .progress {
-    width: 50%;
     height: 100%;
     background: linear-gradient(90deg, #42a5f5, #ab47bc);
     border-radius: 4px;
+    transition: width 0.3s ease;
 }
 
-h1 {
+h5 {
     font-size: 14px;
     color: #333;
     margin-bottom: 10px;
@@ -69,73 +69,121 @@ textarea {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    align-items: center;
 }
 
-label {
+.slider-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.slider-group label {
     font-size: 14px;
     color: #555;
-    display: flex;
-    align-items: center;
-    gap: 10px;
 }
 
-input[type="range"], input[type="checkbox"] {
+.slider-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Căn giữa theo chiều ngang */
     width: 100%;
-    max-width: 200px;
+    /* padding: 0 10px; */
+    box-sizing: border-box;
+    gap: 20px;
+}
+
+input[type="range"] {
+    width: 100%;
+    max-width: 500px;
+    -webkit-appearance: none;
+    height: 6px;
+    background: #e0e0e0;
+    border-radius: 3px;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: linear-gradient(90deg, #42a5f5, #ab47bc);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: linear-gradient(90deg, #42a5f5, #ab47bc);
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 #speechRateValue, #delayValue {
     font-size: 14px;
     color: #777;
-    margin-left: 10px;
 }
 
-.button-group {
+.checkbox-group {
     display: flex;
+    flex-direction: column;
     gap: 10px;
-    justify-content: center;
+    width: 100%;
 }
 
-button {
-    padding: 12px 20px;
+.checkbox-group label {
     font-size: 14px;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #ab47bc;
+}
+
+.control-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.control-btn {
+    background: none;
     border: none;
-    border-radius: 50px;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: #ab47bc;
+    transition: transform 0.1s;
+}
+
+.control-btn:hover {
+    transform: scale(1.1);
+}
+
+.control-btn.play-pause {
+    font-size: 1.5em;
     background: linear-gradient(90deg, #42a5f5, #ab47bc);
     color: white;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-button:hover:not(:disabled) {
-    background: linear-gradient(90deg, #2196f3, #9c27b0);
-}
-
-button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-#stopBtn {
-    background: linear-gradient(90deg, #f44336, #d81b60);
-}
-
-#stopBtn:hover:not(:disabled) {
-    background: linear-gradient(90deg, #e53935, #c2185b);
-}
-
-.continue-btn {
-    margin-top: 20px;
-    padding: 15px;
-    font-size: 14px;
-    width: 100%;
-    max-width: 300px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #currentWord {
     font-size: 14px;
     color: #333;
-    margin-top: 5px;
+    margin: 10px 0;
     text-align: center;
     max-width: 90%;
     line-height: 1.5;
@@ -147,7 +195,7 @@ button:disabled {
 }
 
 #currentWord .hanzi {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
     color: #333;
 }

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Thêm Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Dùng Firebase SDK phiên bản 8.10.1 -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
@@ -12,6 +14,7 @@
 <body>
     <div class="container">
         <h5>Học tiếng Trung 📒</h5>
+        
         <select id="lessonSelect">
             <option value="">Chọn bài học</option>
         </select>
@@ -22,12 +25,36 @@
         <p id="currentWord"></p>
         <br>
         <div class="controls">
-            <label>Tốc độ đọc (0- 2) : <input type="range" id="speechRate" min="0.5" max="2" step="0.1" value="1"><span id="speechRateValue">1</span></label>
-            <label>Khoảng cách (giây): <input type="range" id="delay" min="0" max="5" step="0.5" value="1"><span id="delayValue">1</span></label>
-            <label>Nghe tiếng Việt: <input type="checkbox" id="playVietnamese" checked></label>
-            <div class="button-group">
-                <button id="playBtn" onclick="processAndSpeakList()">Phát âm</button>
-                <button id="stopBtn" onclick="stopSpeaking()">Dừng</button>
+            <div class="slider-group">
+                <label for="speechRate">Tốc độ đọc <b>( <span id="speechRateValue">1</span> giây )</b></label>
+                <div class="slider-wrapper">
+                    <input type="range" id="speechRate" min="0.5" max="2" step="0.1" value="1">
+                </div>
+            </div>
+            <div class="slider-group">
+                <label for="delay">Khoảng cách <b>( <span id="delayValue">1</span> giây ) </b></label>
+                <div class="slider-wrapper">
+                    <input type="range" id="delay" min="0.5" max="5" step="0.5" value="1">
+                </div>
+            </div>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" id="playVietnamese" checked> Nghe tiếng Việt
+                </label>
+                <label>
+                    <input type="checkbox" id="playTwiceChinese"> Nghe 2 lần tiếng Trung
+                </label>
+            </div>
+            <div class="control-buttons">
+                <button class="control-btn" id="replayBtn" title="Đọc lại từ đầu">
+                    <i class="fas fa-redo"></i>
+                </button>
+                <button class="control-btn play-pause" id="playPauseBtn" title="Phát/Tạm dừng">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button class="control-btn" id="nextBtn" title="Bỏ qua từ hiện tại">
+                    <i class="fas fa-forward"></i>
+                </button>
             </div>
         </div>
         <br>

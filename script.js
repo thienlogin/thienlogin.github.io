@@ -1,7 +1,13 @@
-
 let voices = [];
 let isSpeaking = false;
+let isPaused = false;
 let lessons = {};
+let currentUtterance = null;
+let currentIndex = 0;
+let lines = [];
+let rate = 1;
+let delay = 1000;
+let timeoutId = null;
 
 // Cấu hình Firebase
 const firebaseConfig = {
@@ -49,7 +55,7 @@ function loadVoices() {
 }
 loadVoices();
 
-// Hiển thị giá trị slider
+// Hiển thị giá trị slider và cập nhật theo thời gian thực
 const speechRateSlider = document.getElementById("speechRate");
 const delaySlider = document.getElementById("delay");
 const speechRateValue = document.getElementById("speechRateValue");
@@ -57,9 +63,22 @@ const delayValue = document.getElementById("delayValue");
 
 speechRateSlider.addEventListener("input", function() {
     speechRateValue.textContent = this.value;
+    rate = parseFloat(this.value);
+    if (isSpeaking && !isPaused) {
+        window.speechSynthesis.cancel();
+        clearTimeout(timeoutId);
+        speakNext(); // Đọc lại câu hiện tại với tốc độ mới
+    }
 });
+
 delaySlider.addEventListener("input", function() {
     delayValue.textContent = this.value;
+    delay = parseFloat(this.value) * 1000;
+    if (isSpeaking && !isPaused) {
+        window.speechSynthesis.cancel(); // Hủy phát âm hiện tại
+        clearTimeout(timeoutId); // Hủy timeout hiện tại
+        speakNext(); // Đọc lại câu hiện tại với khoảng cách mới
+    }
 });
 
 // Xử lý khi chọn bài học
@@ -72,94 +91,180 @@ document.getElementById("lessonSelect").addEventListener("change", function() {
     }
 });
 
-function processAndSpeakList() {
+// Xử lý nút play/pause
+const playPauseBtn = document.getElementById("playPauseBtn");
+playPauseBtn.addEventListener("click", togglePlayPause);
+
+// Xử lý nút replay
+document.getElementById("replayBtn").addEventListener("click", replay);
+
+// Xử lý nút next
+document.getElementById("nextBtn").addEventListener("click", skipToNext);
+
+function togglePlayPause() {
+    if (!isSpeaking) {
+        startSpeaking();
+    } else if (isPaused) {
+        resumeSpeaking();
+    } else {
+        pauseSpeaking();
+    }
+}
+
+function startSpeaking() {
     if (isSpeaking) return;
     isSpeaking = true;
-
-    const playBtn = document.getElementById("playBtn");
-    playBtn.disabled = true;
+    isPaused = false;
+    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
 
     const input = document.getElementById("inputWords").value;
-    const lines = input.split("\n").filter(line => line.trim() !== "");
+    lines = input.split("\n").filter(line => line.trim() !== "");
     if (lines.length === 0) {
         alert("Vui lòng nhập ít nhất một từ hoặc chọn bài học!");
-        isSpeaking = false;
-        playBtn.disabled = false;
+        stopSpeaking();
         return;
     }
 
-    let index = 0;
-    const rate = parseFloat(document.getElementById("speechRate").value);
-    const delay = parseFloat(document.getElementById("delay").value) * 1000;
+    currentIndex = 0;
+    rate = parseFloat(document.getElementById("speechRate").value);
+    delay = parseFloat(document.getElementById("delay").value) * 1000;
+    speakNext();
+}
+
+function resumeSpeaking() {
+    isPaused = false;
+    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    window.speechSynthesis.cancel(); // Hủy phát âm hiện tại
+    speakNext(); // Đọc lại từ đầu câu hiện tại
+}
+
+function pauseSpeaking() {
+    isPaused = true;
+    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+    window.speechSynthesis.cancel(); // Hủy phát âm hiện tại
+    clearTimeout(timeoutId);
+}
+
+function stopSpeaking() {
+    isSpeaking = false;
+    isPaused = false;
+    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+    window.speechSynthesis.cancel();
+    clearTimeout(timeoutId);
+    document.getElementById("currentWord").innerHTML = "";
+    document.querySelector(".progress").style.width = "0%";
+}
+
+function replay() {
+    stopSpeaking();
+    startSpeaking();
+}
+
+function skipToNext() {
+    if (!isSpeaking) return;
+    window.speechSynthesis.cancel();
+    clearTimeout(timeoutId);
+    currentIndex++;
+    if (currentIndex >= lines.length) {
+        stopSpeaking();
+        return;
+    }
+    speakNext();
+}
+
+function speakNext() {
+    if (!isSpeaking || isPaused) return;
+
+    if (currentIndex >= lines.length) {
+        currentIndex = 0; // Reset về đầu danh sách
+        document.querySelector(".progress").style.width = "0%"; // Reset thanh tiến trình
+        speakNext(); // Gọi lại để đọc từ đầu
+        return;
+    }
+
+    const progress = (currentIndex + 1) * (100 / lines.length);
+    document.querySelector(".progress").style.width = `${progress}%`;
+
+    // Chuẩn hóa chuỗi: thêm khoảng cách trước/sau dấu - nếu thiếu
+    let line = lines[currentIndex].trim();
+    line = line.replace(/-+/g, ' - ').replace(/\s+/g, ' ').trim(); // Thay thế các dấu - không có khoảng cách bằng " - ", và chuẩn hóa khoảng trắng
+
+    const parts = line.split(" - ");
+    if (parts.length < 3) {
+        alert(`Dòng ${currentIndex + 1} sai định dạng, cần: pinyin - chữ Hán - nghĩa`);
+        stopSpeaking();
+        return;
+    }
+
+    const pinyin = parts[0];
+    const hanzi = parts[1];
+    const meaning = parts[2];
+
+    document.getElementById("currentWord").innerHTML = `
+        <div class="pinyin">${pinyin}</div>
+        <div class="hanzi">${hanzi}</div>
+        <div class="meaning">${meaning}</div>
+    `;
+
+    const chineseVoice = voices.find(voice => 
+        voice.lang === 'zh-CN' && voice.name.toLowerCase().includes('female')
+    ) || voices.find(voice => voice.lang === 'zh-CN');
+
+    const chineseUtterance = new SpeechSynthesisUtterance(hanzi);
+    chineseUtterance.lang = 'zh-CN';
+    chineseUtterance.rate = rate;
+    if (chineseVoice) chineseUtterance.voice = chineseVoice;
+
+    const vietnameseUtterance = new SpeechSynthesisUtterance(meaning);
+    vietnameseUtterance.lang = 'vi-VN';
+    vietnameseUtterance.rate = rate;
+    vietnameseUtterance.volume = 0.7;
+
     const playVietnamese = document.getElementById("playVietnamese").checked;
+    const playTwiceChinese = document.getElementById("playTwiceChinese").checked;
 
-    function speakNext() {
-        if (!isSpeaking) return;
+    if (playTwiceChinese) {
+        // Đọc lần 1 tiếng Trung
+        chineseUtterance.onend = () => {
+            // Đọc lần 2 tiếng Trung
+            const secondChineseUtterance = new SpeechSynthesisUtterance(hanzi);
+            secondChineseUtterance.lang = 'zh-CN';
+            secondChineseUtterance.rate = rate;
+            if (chineseVoice) secondChineseUtterance.voice = chineseVoice;
 
-        if (index >= lines.length) {
-            index = 0;
-        }
-
-        const progress = (index + 1) * (100 / lines.length);
-        document.querySelector(".progress").style.width = `${progress}%`;
-
-        const parts = lines[index].split(" - ");
-        if (parts.length < 3) {
-            alert(`Dòng ${index + 1} sai định dạng, cần: pinyin - chữ Hán - nghĩa`);
-            isSpeaking = false;
-            playBtn.disabled = false;
-            return;
-        }
-
-        const pinyin = parts[0];
-        const hanzi = parts[1];
-        const meaning = parts[2];
-
-        document.getElementById("currentWord").innerHTML = `
-            <div class="pinyin">${pinyin}</div>
-            <div class="hanzi">${hanzi}</div>
-            <div class="meaning">${meaning}</div>
-        `;
-
-        const chineseVoice = voices.find(voice => 
-            voice.lang === 'zh-CN' && voice.name.toLowerCase().includes('female')
-        ) || voices.find(voice => voice.lang === 'zh-CN');
-
-        const chineseUtterance = new SpeechSynthesisUtterance(hanzi);
-        chineseUtterance.lang = 'zh-CN';
-        chineseUtterance.rate = rate;
-        if (chineseVoice) chineseUtterance.voice = chineseVoice;
-
-        const vietnameseUtterance = new SpeechSynthesisUtterance(meaning);
-        vietnameseUtterance.lang = 'vi-VN';
-        vietnameseUtterance.rate = rate;
-        vietnameseUtterance.volume = 0.7;
-
+            if (playVietnamese) {
+                secondChineseUtterance.onend = () => {
+                    vietnameseUtterance.onend = () => {
+                        currentIndex++;
+                        timeoutId = setTimeout(speakNext, delay);
+                    };
+                    window.speechSynthesis.speak(vietnameseUtterance);
+                };
+            } else {
+                secondChineseUtterance.onend = () => {
+                    currentIndex++;
+                    timeoutId = setTimeout(speakNext, delay);
+                };
+            }
+            window.speechSynthesis.speak(secondChineseUtterance);
+        };
+    } else {
+        // Chỉ đọc 1 lần tiếng Trung
         if (playVietnamese) {
             chineseUtterance.onend = () => {
                 vietnameseUtterance.onend = () => {
-                    index++;
-                    setTimeout(speakNext, delay);
+                    currentIndex++;
+                    timeoutId = setTimeout(speakNext, delay);
                 };
                 window.speechSynthesis.speak(vietnameseUtterance);
             };
         } else {
             chineseUtterance.onend = () => {
-                index++;
-                setTimeout(speakNext, delay);
+                currentIndex++;
+                timeoutId = setTimeout(speakNext, delay);
             };
         }
-
-        window.speechSynthesis.speak(chineseUtterance);
     }
 
-    speakNext();
-}
-
-function stopSpeaking() {
-    isSpeaking = false;
-    window.speechSynthesis.cancel();
-    document.getElementById("currentWord").innerHTML = "";
-    document.querySelector(".progress").style.width = "0%";
-    document.getElementById("playBtn").disabled = false;
+    window.speechSynthesis.speak(chineseUtterance);
 }

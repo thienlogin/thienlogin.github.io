@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Học tiếng Trung</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +12,11 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 </head>
+
 <body>
     <div class="container">
         <h5>Học tiếng Trung 📒</h5>
-        
+
         <select id="lessonSelect">
             <option value="">Chọn bài học</option>
         </select>
@@ -45,12 +47,7 @@
                     <input type="checkbox" id="playTwiceChinese"> Nghe 2 lần tiếng Trung
                 </label>
             </div>
-            <div class="select-group">
-                <label for="voiceSelect">Chọn giọng đọc tiếng Trung:</label>
-                <select id="voiceSelect">
-                    <option value="">Tự động</option> <!-- Mặc định, tự động chọn giọng -->
-                </select>
-            </div>
+            
             <div class="control-buttons">
                 <button class="control-btn" id="replayBtn" title="Đọc lại từ đầu">
                     <i class="fas fa-redo"></i>
@@ -62,11 +59,28 @@
                     <i class="fas fa-forward"></i>
                 </button>
             </div>
+            <br>
+            <div class="select-group">
+                <label for="voiceSelect">Chọn giọng đọc tiếng Trung:</label>
+                <select id="voiceSelect">
+                    <option value="">Tự động</option>
+                    <!-- Mặc định, tự động chọn giọng -->
+                </select>
+            </div>
+            <div class="select-group">
+                <label for="vietnameseVoiceSelect">Chọn giọng đọc tiếng Việt:</label>
+                <select id="vietnameseVoiceSelect">
+                    <option value="">Tự động</option>
+                </select>
+            </div>
         </div>
         <br>
-        <a href="manage.html"><h5>Quản lý bài học</h5></a>
+        <a href="manage.html">
+            <h5>Quản lý bài học</h5>
+        </a>
     </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>

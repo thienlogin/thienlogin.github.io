@@ -8,10 +8,12 @@ let lines = [];
 let rate = 1;
 let delay = 1000;
 let timeoutId = null;
+const defaultChineseVoiceName = "Google 普通话（中国大陆） (zh-CN)"; // Tên giọng mặc định
+let selectedChineseVoice = null;
 
-// Cấu hình Firebase
+// Cấu hình Firebase (NHỚ THAY API KEY BẰNG CÁCH BẢO MẬT HƠN!)
 const firebaseConfig = {
-    apiKey: "AIzaSyD3XzQuT0mm0VuiIlRjh4J_8NspqRnup3c",
+    apiKey: "AIzaSyD3XzQuT0mm0VuiIlRjh4J_8NspqRnup3c", // **QUAN TRỌNG: BẢO MẬT API KEY!**
     authDomain: "hoc-tieng-trung-8fcb7.firebaseapp.com",
     databaseURL: "https://hoc-tieng-trung-8fcb7-default-rtdb.asia-southeast1.firebasedatabase.app",
     projectId: "hoc-tieng-trung-8fcb7",
@@ -47,13 +49,52 @@ document.addEventListener("DOMContentLoaded", loadLessons);
 
 function loadVoices() {
     voices = speechSynthesis.getVoices();
+    populateVoiceList(); // Gọi populateVoiceList sau khi tải giọng đọc
+
     if (voices.length === 0) {
         speechSynthesis.onvoiceschanged = () => {
             voices = speechSynthesis.getVoices();
+            populateVoiceList(); // Gọi lại khi giọng đọc thay đổi
         };
     }
 }
+
+// Điền vào dropdown chọn giọng đọc
+function populateVoiceList() {
+    const voiceSelect = document.getElementById("voiceSelect");
+    voiceSelect.innerHTML = '<option value="">Tự động</option>';
+
+    voices.forEach(voice => {
+        if (voice.lang === 'zh-CN') {
+            const option = document.createElement("option");
+            option.value = voice.name;
+            option.textContent = `${voice.name} (${voice.lang})`;
+            voiceSelect.appendChild(option);
+
+            // So sánh chính xác với defaultChineseVoiceName
+            if (voice.name === defaultChineseVoiceName) {
+                option.selected = true;
+                selectedChineseVoice = voice;
+            }
+        }
+    });
+
+    if (!selectedChineseVoice) {
+        selectedChineseVoice = null;
+    }
+}
+
 loadVoices();
+
+// Lắng nghe sự kiện change của dropdown chọn giọng đọc
+document.getElementById("voiceSelect").addEventListener("change", function () {
+    const selectedVoiceName = this.value;
+    if (selectedVoiceName) {
+        selectedChineseVoice = voices.find(voice => voice.name === selectedVoiceName);
+    } else {
+        selectedChineseVoice = null; // Đặt lại về tự động
+    }
+});
 
 // Hiển thị giá trị slider và cập nhật theo thời gian thực
 const speechRateSlider = document.getElementById("speechRate");
@@ -61,7 +102,7 @@ const delaySlider = document.getElementById("delay");
 const speechRateValue = document.getElementById("speechRateValue");
 const delayValue = document.getElementById("delayValue");
 
-speechRateSlider.addEventListener("input", function() {
+speechRateSlider.addEventListener("input", function () {
     speechRateValue.textContent = this.value;
     rate = parseFloat(this.value);
     if (isSpeaking && !isPaused) {
@@ -71,7 +112,7 @@ speechRateSlider.addEventListener("input", function() {
     }
 });
 
-delaySlider.addEventListener("input", function() {
+delaySlider.addEventListener("input", function () {
     delayValue.textContent = this.value;
     delay = parseFloat(this.value) * 1000;
     if (isSpeaking && !isPaused) {
@@ -82,7 +123,7 @@ delaySlider.addEventListener("input", function() {
 });
 
 // Xử lý khi chọn bài học
-document.getElementById("lessonSelect").addEventListener("change", function() {
+document.getElementById("lessonSelect").addEventListener("change", function () {
     const selectedLesson = this.value;
     if (selectedLesson && lessons[selectedLesson]) {
         document.getElementById("inputWords").value = lessons[selectedLesson].words.join("\n");
@@ -206,9 +247,15 @@ function speakNext() {
         <div class="meaning">${meaning}</div>
     `;
 
-    const chineseVoice = voices.find(voice => 
-        voice.lang === 'zh-CN' && voice.name.toLowerCase().includes('female')
-    ) || voices.find(voice => voice.lang === 'zh-CN');
+    // Lấy giọng đọc tiếng Trung (ưu tiên giọng đã chọn)
+    let chineseVoice = selectedChineseVoice;
+
+    // Nếu chưa chọn giọng đọc hoặc chọn "Tự động", sử dụng logic mặc định
+    if (!chineseVoice) {
+        chineseVoice = voices.find(voice =>
+            voice.lang === 'zh-CN' && voice.name.toLowerCase().includes('female')
+        ) || voices.find(voice => voice.lang === 'zh-CN');
+    }
 
     const chineseUtterance = new SpeechSynthesisUtterance(hanzi);
     chineseUtterance.lang = 'zh-CN';

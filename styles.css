@@ -204,3 +204,20 @@ input[type="checkbox"] {
     font-size: 12px;
     color: #777;
 }
+
+.select-group {
+    margin-bottom: 10px;
+}
+
+.select-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.select-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Đảm bảo padding không làm vượt quá kích thước */
+}

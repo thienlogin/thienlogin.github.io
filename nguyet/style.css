@@ -1,0 +1,253 @@
+/* /style.css */
+
+/* --- General Styles --- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+
+h1, h2, h3 {
+    color: #0056b3;
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    color: #fff;
+    margin: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-primary { background-color: #007bff; }
+.btn-primary:hover { background-color: #0056b3; }
+
+.btn-success { background-color: #28a745; }
+.btn-success:hover { background-color: #1e7e34; }
+
+.btn-warning { background-color: #ffc107; color: #212529; }
+.btn-warning:hover { background-color: #e0a800; }
+
+.btn-danger { background-color: #dc3545; }
+.btn-danger:hover { background-color: #c82333; }
+
+.btn-secondary { background-color: #6c757d; }
+.btn-secondary:hover { background-color: #545b62; }
+
+
+/* --- Forms --- */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Important */
+}
+
+textarea.form-control {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* --- Tables --- */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.styled-table th, .styled-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.styled-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.styled-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+/* --- Modals (Popups) --- */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 700px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.close-btn {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close-btn:hover, .close-btn:focus {
+    color: black;
+}
+
+/* --- Admin Navigation --- */
+.admin-nav {
+    background-color: #343a40;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+}
+
+.admin-nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 18px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.admin-nav a:hover, .admin-nav a.active {
+    background-color: #007bff;
+}
+
+/* --- User Quiz Styles --- */
+#quiz-screen, #result-screen {
+    display: none; /* Hide screens initially */
+}
+
+.question-block {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.question-block p {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.options label {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+}
+.options label:hover {
+    background-color: #f0f0f0;
+}
+
+/* --- Review Styles --- */
+.review-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 5px;
+}
+.review-item p {
+    margin: 0 0 10px 0;
+    font-weight: bold;
+}
+.review-item .user-answer {
+    padding: 10px;
+    border-radius: 5px;
+}
+.review-item .correct-answer {
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+/* Color coding for answers */
+.correct {
+    background-color: #d4edda; /* Light green */
+    border-left: 5px solid #28a745;
+}
+.incorrect {
+    background-color: #f8d7da; /* Light red */
+    border-left: 5px solid #dc3545;
+}
+
+.highlight-correct {
+    background-color: #d4edda; /* Light green background for the correct option text */
+    font-weight: bold;
+}
+
+/* /style.css - Thêm vào cuối file */
+
+/* --- Result Grouping Styles --- */
+.date-separator td {
+    background-color: #e9ecef;
+    font-weight: bold;
+    padding: 15px;
+    text-align: center !important; /* Ghi đè các style khác */
+    border-top: 3px solid #0056b3;
+    border-bottom: 3px solid #0056b3;
+}
+
+.date-separator h3 {
+    margin: 0;
+    color: #0056b3;
+    font-size: 1.2em;
+}
+
+.modal-footer {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    text-align: right;
+}

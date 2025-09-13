@@ -1,0 +1,90 @@
+<!-- /admin/quiz-sets.html -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Quản lý Bộ đề</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* CSS riêng cho trang này */
+        .question-selection-list {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .question-selection-list label {
+            display: block;
+            padding: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .question-selection-list label:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quản lý Bộ đề thi</h1>
+        <div id="admin-nav-container"></div>
+
+        <main>
+            <button id="add-set-btn" class="btn btn-primary">Tạo bộ đề mới</button>
+            
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Tên bộ đề</th>
+                        <th>Số lượng câu hỏi</th>
+                        <th>Ngày tạo</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody id="sets-list">
+                    <!-- Dữ liệu sẽ được chèn vào đây -->
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <!-- Modal for Add/Edit Quiz Set -->
+    <div id="set-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">×</span>
+            <h2 id="modal-title">Tạo bộ đề mới</h2>
+            <form id="set-form" novalidate>
+                <input type="hidden" id="set-id">
+                <div class="form-group">
+                    <label for="set-name">Tên bộ đề:</label>
+                    <input type="text" id="set-name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="set-description">Mô tả (tùy chọn):</label>
+                    <textarea id="set-description" class="form-control"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Chọn câu hỏi từ ngân hàng (<span id="selected-count">0</span> câu đã chọn):</label>
+                    <input type="text" id="question-search" class="form-control" placeholder="Tìm kiếm câu hỏi...">
+                    <div id="question-selection-list" class="question-selection-list">
+                        <!-- Danh sách câu hỏi để chọn sẽ được load vào đây -->
+                        <p>Đang tải danh sách câu hỏi...</p>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success">Lưu bộ đề</button>
+                <button type="button" id="cancel-btn" class="btn btn-secondary">Hủy</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SDKs and Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="../firebase-config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/quiz-sets.js"></script>
+</body>
+</html>

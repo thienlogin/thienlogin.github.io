@@ -1,0 +1,73 @@
+<!-- /user/index.html -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Làm bài thi trắc nghiệm</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .quiz-set-card {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .quiz-set-card:hover {
+            background-color: #e9ecef;
+        }
+        .quiz-set-card.selected {
+            background-color: #d4edda;
+            border-color: #28a745;
+        }
+        .quiz-set-card p {
+            margin: 0;
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Màn hình 1: Nhập tên và Chọn bộ đề -->
+        <div id="start-screen">
+            <h1>Chào mừng bạn đến với bài thi trắc nghiệm</h1>
+            <div class="form-group">
+                <label for="user-name">Nhập tên của bạn:</label>
+                <input type="text" id="user-name" class="form-control" placeholder="Nguyễn Văn A">
+            </div>
+            <div class="form-group">
+                <label>Chọn một bộ đề để bắt đầu:</label>
+                <div id="quiz-set-list">
+                    <p>Đang tải danh sách bộ đề...</p>
+                </div>
+            </div>
+            <button id="start-btn" class="btn btn-primary" disabled>Bắt đầu</button>
+        </div>
+
+        <!-- Màn hình 2: Làm bài thi -->
+        <div id="quiz-screen" style="display:none;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2 id="welcome-user">Bài làm của bạn</h2>
+                <h3>Thời gian: <span id="timer">00:00</span></h3>
+            </div>
+            <h3 id="quiz-set-title"></h3>
+            <form id="quiz-form"></form>
+        </div>
+
+        <!-- Màn hình 3: Kết quả -->
+        <div id="result-screen" style="display:none;">
+             <!-- Nội dung màn hình kết quả giữ nguyên như cũ -->
+        </div>
+    </div>
+
+    <!-- SDKs and Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="../firebase-config.js"></script>
+    <script src="js/user.js"></script>
+</body>
+</html>

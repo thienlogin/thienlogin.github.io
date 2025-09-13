@@ -1,0 +1,55 @@
+<!-- /admin/dashboard.html -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Tổng quan</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Bảng điều khiển Admin</h1>
+        <div id="admin-nav-container"></div>
+
+        <main>
+            <h2>Thống kê nhanh</h2>
+            <div id="stats">
+                <p><strong>Tổng số câu hỏi:</strong> <span id="total-questions">Đang tải...</span></p>
+                <p><strong>Tổng số lượt làm bài:</strong> <span id="total-results">Đang tải...</span></p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    <!-- Firebase Config & Scripts -->
+    <script src="../firebase-config.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Script riêng cho trang dashboard
+        document.addEventListener('DOMContentLoaded', () => {
+            const totalQuestionsSpan = document.getElementById('total-questions');
+            const totalResultsSpan = document.getElementById('total-results');
+
+            // Lấy tổng số câu hỏi
+            db.collection('questions').get().then(snapshot => {
+                totalQuestionsSpan.textContent = snapshot.size;
+            }).catch(error => {
+                console.error("Lỗi khi lấy số câu hỏi: ", error);
+                totalQuestionsSpan.textContent = "Lỗi";
+            });
+
+            // Lấy tổng số lượt làm bài
+            db.collection('results').get().then(snapshot => {
+                totalResultsSpan.textContent = snapshot.size;
+            }).catch(error => {
+                console.error("Lỗi khi lấy số kết quả: ", error);
+                totalResultsSpan.textContent = "Lỗi";
+            });
+        });
+    </script>
+</body>
+</html>

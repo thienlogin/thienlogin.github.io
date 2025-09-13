@@ -1,0 +1,57 @@
+<!-- /admin/results.html -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Xem kết quả</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Lịch sử làm bài của người dùng</h1>
+        <div id="admin-nav-container"></div>
+
+        <main>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Tên người làm</th>
+                        <th>Điểm số</th>
+                        <th>Thời gian làm bài</th>
+                        <th>Ngày nộp</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody id="results-list">
+                    <!-- Dữ liệu sẽ được nhóm và chèn vào đây bởi JS -->
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <!-- Modal for Result Details -->
+    <div id="result-detail-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">×</span>
+            <h2 id="result-detail-title">Chi tiết bài làm</h2>
+            <div id="result-detail-content">
+                <!-- Chi tiết bài làm sẽ được chèn vào đây -->
+            </div>
+            <!-- THÊM MỚI: Footer cho modal chứa nút xóa -->
+            <div class="modal-footer">
+                <button id="delete-from-modal-btn" class="btn btn-danger">Xóa kết quả này</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    
+    <!-- Firebase Config & Scripts -->
+    <script src="../firebase-config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/results.js"></script> <!-- Sẽ cập nhật file này -->
+</body>
+</html>

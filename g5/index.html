@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuỗi Chúc Mừng 8/3</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="title">Chúc Mừng 8/3</h1>
+        <h2 id="subtitle">Chị em G5 Media</h2>
+        <div id="team-selection" class="team-list">
+            <button onclick="selectTeam(1)">Team 1</button>
+            <button onclick="selectTeam(2)">Team 2</button>
+            <button onclick="selectTeam(3)">Team 3</button>
+            <button onclick="selectTeam(4)">Team 4</button>
+            <button onclick="selectTeam(5)">Team 5</button>
+            <button onclick="selectTeam(6)">Team 6</button>
+            <button onclick="selectTeam(7)">Team 7</button>
+            <button onclick="selectTeam(8)">Team 8</button>
+            <button onclick="selectTeam(9)">Team 9</button>
+            <button onclick="selectTeam(10)">Team 10</button>
+        </div>
+        <div id="word-selection" style="display: none;">
+            <h2 id="team-name" class="team-name"></h2>
+            <div><p>🩷</p></div>
+            <div id="numbers">
+                <button onclick="showWord(1)">1</button>
+                <button onclick="showWord(2)">2</button>
+                <button onclick="showWord(3)">3</button>
+                <button onclick="showWord(4)">4</button>
+                <button onclick="showWord(5)">5</button>
+            </div>
+            <div id="word-display" style="display: none;">
+                <h5 id="word" class="keyword">Chuẩn bị...</h5>
+                <button class="back-btn" onclick="backToNumbers()">←</button>
+            </div>
+            <button class="back-btn" id="back-to-teams" style="display: none;" onclick="backToTeams()">←</button>
+        </div>
+    </div>
+    <!-- Firebase SDK 8.x -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!-- /admin/questions.html -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Quản lý câu hỏi</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quản lý Ngân hàng câu hỏi</h1>
+        <div id="admin-nav-container"></div>
+
+        <main>
+            <button id="add-question-btn" class="btn btn-primary">Thêm câu hỏi mới</button>
+            
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Nội dung câu hỏi</th>
+                        <th>Loại câu hỏi</th>
+                        <th>Ngày tạo</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody id="questions-list">
+                    <!-- Dữ liệu câu hỏi sẽ được chèn vào đây bởi JS -->
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <!-- Modal for Add/Edit Question -->
+    <div id="question-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">×</span>
+            <h2 id="modal-title">Thêm câu hỏi mới</h2>
+            <!-- THAY ĐỔI QUAN TRỌNG: Thêm 'novalidate' -->
+            <form id="question-form" novalidate>
+                <input type="hidden" id="question-id">
+
+                <div class="form-group">
+                    <label for="question-type">Loại câu hỏi:</label>
+                    <select id="question-type" class="form-control">
+                        <option value="multiple-choice">Trắc nghiệm (Chọn 1 đáp án)</option>
+                        <option value="matching">Nối đáp án</option>
+                        <option value="essay">Tự luận</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="question-text">Nội dung câu hỏi/Yêu cầu:</label>
+                    <textarea id="question-text" class="form-control"></textarea>
+                </div>
+
+                <!-- Fields for Multiple Choice -->
+                <div id="fields-multiple-choice" class="question-type-fields">
+                    <div class="form-group">
+                        <label for="option-a">Lựa chọn A:</label>
+                        <input type="text" id="option-a" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="option-b">Lựa chọn B:</label>
+                        <input type="text" id="option-b" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="option-c">Lựa chọn C (tùy chọn):</label>
+                        <input type="text" id="option-c" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="option-d">Lựa chọn D (tùy chọn):</label>
+                        <input type="text" id="option-d" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="correct-answer">Đáp án đúng:</label>
+                        <select id="correct-answer" class="form-control">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Fields for Matching -->
+                <div id="fields-matching" class="question-type-fields" style="display:none;">
+                    <p>Nhập các cặp để nối. Cột A sẽ là vế câu hỏi, Cột B là vế đáp án.</p>
+                    <div id="matching-pairs-container"></div>
+                    <button type="button" id="add-matching-pair" class="btn btn-secondary">Thêm cặp</button>
+                </div>
+
+                <!-- Fields for Essay -->
+                <div id="fields-essay" class="question-type-fields" style="display:none;">
+                    <div class="form-group">
+                        <label for="max-points">Số điểm tối đa cho câu này:</label>
+                        <input type="number" id="max-points" class="form-control" min="1" value="10">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success">Lưu</button>
+                <button type="button" id="cancel-btn" class="btn btn-secondary">Hủy</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SDKs and Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="../firebase-config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/questions.js"></script>
+</body>
+</html>

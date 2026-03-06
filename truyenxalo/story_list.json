@@ -1,0 +1,182 @@
+[
+  {
+    "chapterId": "chapter_01",
+    "chapterNumber": 1,
+    "title": "Chương 1: Xuyên qua, nhưng không phải chuyện tốt",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_02",
+    "chapterNumber": 2,
+    "title": "Chương 2: Bắt đầu bị giáo hoa vứt bỏ ~!",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_03",
+    "chapterNumber": 3,
+    "title": "Chương 3: Vàng Ròng Châu Báu!",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_04",
+    "chapterNumber": 4,
+    "title": "Chương 4: Sinh tồn hệ thống ra đa",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_05",
+    "chapterNumber": 5,
+    "title": "Chương 5: Cơ sở vật tư cùng bất ngờ phát hiện",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_06",
+    "chapterNumber": 6,
+    "title": "Chương 6: Điểm vật tư màu vàng kim",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_07",
+    "chapterNumber": 7,
+    "title": "Chương 7: Ngân hàng bỏ hoang thu hoạch",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_08",
+    "chapterNumber": 8,
+    "title": "Chương 8: Tọa độ bị lộ và hiểm nguy ập đến",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_09",
+    "chapterNumber": 9,
+    "title": "Chương 9: Lần đầu giao phong",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_10",
+    "chapterNumber": 10,
+    "title": "Chương 10: Dẫn xà xuất động",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_11",
+    "chapterNumber": 11,
+    "title": "Chương 11: Ve sầu thoát xác",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_12",
+    "chapterNumber": 12,
+    "title": "Chương 12: Thợ săn cùng thú săn",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_13",
+    "chapterNumber": 13,
+    "title": "Chương 13: Vật tư chất đống",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_14",
+    "chapterNumber": 14,
+    "title": "Chương 14: Tọa sơn quan hổ đấu",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_15",
+    "chapterNumber": 15,
+    "title": "Chương 15: Gặp lại giáo hoa!",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_16",
+    "chapterNumber": 16,
+    "title": "Chương 16: Lựa chọn",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_17",
+    "chapterNumber": 17,
+    "title": "Chương 17: Màu tím dụ hoặc",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_18",
+    "chapterNumber": 18,
+    "title": "Chương 18: Cơ sở chiến đấu tinh thông",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_19",
+    "chapterNumber": 19,
+    "title": "Chương 19: Cơ sở chiến đấu, tuyệt cảnh phản sát",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_20",
+    "chapterNumber": 20,
+    "title": "Chương 20: Liếm bao căn cứ, màu tím tinh hạch",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_21",
+    "chapterNumber": 21,
+    "title": "Chương 21: Thi triều vây cầu, tử vong thông đạo",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_22",
+    "chapterNumber": 22,
+    "title": "Chương 22: Biển lửa đoạn hậu, thu hoạch tinh anh",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_23",
+    "chapterNumber": 23,
+    "title": "Chương 23: Dưới cầu tiềm hành, hoàng tước tại hậu",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_24",
+    "chapterNumber": 24,
+    "title": "Chương 24: Trí mạng đâm lưng, độc chiếm vị trí đầu",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_25",
+    "chapterNumber": 25,
+    "title": "Chương 25: Trở về kết toán",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_26",
+    "chapterNumber": 26,
+    "title": "Chương 26: Giao dịch, lãnh khốc cự tuyệt thân",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_27",
+    "chapterNumber": 27,
+    "title": "Chương 27: Thanh toán tài nguyên, quy hoạch tương lai",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_28",
+    "chapterNumber": 28,
+    "title": "Chương 28: Công khai ghi giá",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_29",
+    "chapterNumber": 29,
+    "title": "Chương 29: Khởi hành mới",
+    "storyId": "story_001"
+  },
+  {
+    "chapterId": "chapter_30",
+    "chapterNumber": 30,
+    "title": "Chương 30: Mưa axit thành",
+    "storyId": "story_001"
+  }
+]

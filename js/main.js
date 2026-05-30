@@ -1,14 +1,14 @@
 /* ============================================================
    HN Quốc Tế — main.js
-   Taste-Skill inspired interactions: scroll reveals, sticky nav,
-   counter animation, marquee pause-on-hover, mobile menu
+   Premium interactions: scroll reveals, sticky nav,
+   counter animation, 3D floating carousel, mobile menu
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
 
     // ─── 1. Sticky Header with backdrop blur ───
     const header = document.querySelector('header');
-    
+
     const handleScroll = () => {
         if (window.scrollY > 30) {
             header.style.paddingTop = '0.75rem';
@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Close on link click
         navPills.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navPills.classList.remove('active');
@@ -52,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
-                revealObserver.unobserve(entry.target); // Only animate once
+                revealObserver.unobserve(entry.target);
             }
         });
     }, {
@@ -61,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     revealElements.forEach(el => {
-        // Don't observe elements that are already active (hero)
         if (!el.classList.contains('active')) {
             revealObserver.observe(el);
         }
@@ -75,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 const counter = entry.target;
                 const target = parseInt(counter.dataset.target);
-                const duration = 2000; // ms
+                const duration = 2000;
                 const startTime = performance.now();
 
                 const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
@@ -84,10 +82,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     const elapsed = currentTime - startTime;
                     const progress = Math.min(elapsed / duration, 1);
                     const easedProgress = easeOutQuart(progress);
-                    
+
                     const current = Math.floor(easedProgress * target);
-                    
-                    // Format with suffix
+
                     if (target >= 1000) {
                         counter.textContent = current.toLocaleString() + '+';
                     } else if (target === 98) {
@@ -152,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ─── 7. Parallax-lite for hero glow ───
     const heroGlow = document.querySelector('.hero-glow');
-    
+
     if (heroGlow) {
         window.addEventListener('scroll', () => {
             const scrolled = window.scrollY;
@@ -160,6 +157,114 @@ document.addEventListener('DOMContentLoaded', () => {
                 heroGlow.style.transform = `translateY(${scrolled * 0.2}px)`;
             }
         }, { passive: true });
+    }
+
+    // ─── 8. Interactive Curved Fan Carousel ───
+    const diagCarousel = document.querySelector('.hero-diagonal-carousel');
+    const diagTrack = document.querySelector('.diagonal-track');
+    const diagCards = document.querySelectorAll('.diagonal-card');
+
+    if (diagCarousel && diagTrack && diagCards.length) {
+        let currentScroll = 0;
+        let isDragging = false;
+        let startY = 0;
+        let lastScrollY = 0;
+        let autoScrollSpeed = 0.3; // Reduced speed for an elegant slow scroll
+        let maxScroll = 0;
+
+        function calculateDimensions() {
+            // Calculate half of the track height for seamless 6-card loop
+            const cardHeight = diagCards[0].offsetHeight;
+            const style = window.getComputedStyle(diagCards[0]);
+            const marginBottom = parseFloat(style.marginBottom) || 0;
+            // 6 original cards + their margins = exact half of the 12-card loop
+            maxScroll = (cardHeight + marginBottom) * 6;
+        }
+
+        calculateDimensions();
+        window.addEventListener('resize', calculateDimensions);
+
+        // --- Drag Events ---
+        diagCarousel.style.cursor = 'grab';
+
+        function onDragStart(e) {
+            isDragging = true;
+            diagCarousel.style.cursor = 'grabbing';
+            startY = e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
+            lastScrollY = currentScroll;
+            // Prevent default to stop text selection while dragging
+            if (e.cancelable) e.preventDefault();
+        }
+
+        function onDragMove(e) {
+            if (!isDragging) return;
+            const y = e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
+            const deltaY = y - startY;
+            // Dragging down moves track up (decreases scroll position)
+            currentScroll = lastScrollY - (deltaY * 1.5); // Multiply by 1.5 for slightly faster drag response
+        }
+
+        function onDragEnd() {
+            isDragging = false;
+            diagCarousel.style.cursor = 'grab';
+        }
+
+        // Mouse listeners
+        diagCarousel.addEventListener('mousedown', onDragStart);
+        window.addEventListener('mousemove', onDragMove);
+        window.addEventListener('mouseup', onDragEnd);
+
+        // Touch listeners (passive: false is needed to prevent scroll with e.preventDefault())
+        diagCarousel.addEventListener('touchstart', onDragStart, { passive: false });
+        diagCarousel.addEventListener('touchmove', onDragMove, { passive: false });
+        diagCarousel.addEventListener('touchend', onDragEnd);
+
+        // --- Animation Loop ---
+        function updateCarousel() {
+            if (!isDragging) {
+                // Auto scroll so cards flow from top to bottom
+                currentScroll -= autoScrollSpeed;
+            }
+
+            // Seamless infinite loop math
+            if (currentScroll >= maxScroll) currentScroll -= maxScroll;
+            if (currentScroll < 0) currentScroll += maxScroll;
+
+            // Apply translation to the track
+            diagTrack.style.transform = `translateY(-${currentScroll}px)`;
+
+            // Calculate card curves based on position
+            const rect = diagCarousel.getBoundingClientRect();
+            const containerTop = rect.top;
+            const containerHeight = rect.height;
+            const centerY = containerTop + containerHeight / 2;
+
+            diagCards.forEach(card => {
+                const cardRect = card.getBoundingClientRect();
+                const cardCenterY = cardRect.top + cardRect.height / 2;
+
+                const distFromCenter = (cardCenterY - centerY) / (containerHeight / 2);
+                const clamped = Math.max(-1, Math.min(1, distFromCenter));
+
+                let scale;
+                if (clamped <= 0) {
+                    scale = 0.3 + (1 - Math.abs(clamped)) * 0.7;
+                } else {
+                    scale = 1.0 - clamped * 0.5;
+                }
+
+                // Smooth parabolic C-Curve (responsive amplitude)
+                const curveFactor = 1 - Math.pow(Math.abs(clamped), 1.5);
+                const curveAmplitude = window.innerWidth * -0.08; // 8vw equivalent
+                const tx = curveFactor * curveAmplitude;
+
+                card.style.transform = `translateX(${tx.toFixed(1)}px) scale(${scale.toFixed(3)})`;
+            });
+
+            requestAnimationFrame(updateCarousel);
+        }
+
+        requestAnimationFrame(updateCarousel);
     }
 
 });
